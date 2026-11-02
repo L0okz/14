@@ -9,10 +9,11 @@
         var appCache = window.applicationCache;
         if (!appCache) return;
         try {
-          if (appCache.status === appCache.UNCACHED ||
-              appCache.status === appCache.CHECKING ||
-              appCache.status === appCache.DOWNLOADING) {
-            location.replace("cache.html");
+          // Only send a first-time visitor to the installer page.
+          // CHECKING/DOWNLOADING can occur during the return navigation too;
+          // redirecting on those states creates a cache.html <-> index.html loop.
+          if (appCache.status === appCache.UNCACHED) {
+            location.replace("./cache.html");
             return;
           }
           if (appCache.status === appCache.UPDATEREADY) {
