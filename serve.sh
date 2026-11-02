@@ -37,6 +37,7 @@ class Handler(SimpleHTTPRequestHandler):
         ".js": "text/javascript",
         ".css": "text/css",
         ".bin": "application/octet-stream",
+        ".appcache": "text/cache-manifest",
     }
 
     CACHEABLE = (".png", ".jpg", ".jpeg", ".gif", ".webp", ".ico")
